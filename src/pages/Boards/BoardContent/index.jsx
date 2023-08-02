@@ -1,17 +1,22 @@
-import { Box } from '@mui/material'
-import React from 'react'
+import { Box } from "@mui/material";
+import ListColumns from "./ListColumns/ListColumns";
 
 const BoardContent = () => {
-    return (
-        <>
-            <Box sx={{
-                width: "100%",
-                height: (theme) => `calc(100vh - ${theme.trelloCustom.appBarHeight} - ${theme.trelloCustom.boardBarHeight})`
-            }}>
-                Box 3
-            </Box>
-        </>
-    )
-}
+  return (
+    <>
+      <Box
+        sx={{
+          p: "10px 0",
+          width: "100%",
+          height: (theme) => theme.trelloCustom.boardContentHeight,
+          bgcolor: (theme) =>
+            theme.palette.mode === "dark" ? "#34495e" : "#1976d2",
+        }}
+      >
+        <ListColumns />
+      </Box>
+    </>
+  );
+};
 
-export default BoardContent
+export default BoardContent;
