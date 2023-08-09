@@ -3,49 +3,60 @@ import Button from "@mui/material/Button";
 import Column from "./Column/Column";
 import React from "react";
 import { NoteAdd } from "@mui/icons-material";
+import {
+  SortableContext,
+  horizontalListSortingStrategy,
+} from "@dnd-kit/sortable";
 
-const ListColumns = () => {
+const ListColumns = ({ columns }) => {
   return (
-    <Box
-      sx={{
-        bgcolor: "inherit",
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        overflowX: "auto",
-        overflowY: "hidden",
-        "&::-webkit-scrollbar-track": {
-          m: 2,
-        },
-      }}
+    <SortableContext
+      items={columns?.map((c) => c._id)}
+      strategy={horizontalListSortingStrategy}
     >
-      <Column />
-      {/* Box  add new column*/}
       <Box
         sx={{
-          minWidth: "200px",
-          maxWidth: "200px",
-          mx: 2,
-          borderRadius: "6px",
-          height: "fit-content",
-          bgcolor: "#ffffff3d",
+          bgcolor: "inherit",
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          overflowX: "auto",
+          overflowY: "hidden",
+          "&::-webkit-scrollbar-track": {
+            m: 2,
+          },
         }}
       >
-        <Button
-          startIcon={<NoteAdd />}
+        {columns?.map((column, index) => {
+          return <Column key={column?._id + index} column={column} />;
+        })}
+        {/* Box  add new column*/}
+        <Box
           sx={{
-            color: "#fff",
-            width: "100%",
-            justifyContent: "flex-start",
-            alignItems: "center",
-            pl: 2.5,
-            py: 1, // py: 8px
+            minWidth: "200px",
+            maxWidth: "200px",
+            mx: 2,
+            borderRadius: "6px",
+            height: "fit-content",
+            bgcolor: "#ffffff3d",
           }}
         >
-          Add new column
-        </Button>
+          <Button
+            startIcon={<NoteAdd />}
+            sx={{
+              color: "#fff",
+              width: "100%",
+              justifyContent: "flex-start",
+              alignItems: "center",
+              pl: 2.5,
+              py: 1, // py: 8px
+            }}
+          >
+            Add new column
+          </Button>
+        </Box>
       </Box>
-    </Box>
+    </SortableContext>
   );
 };
 

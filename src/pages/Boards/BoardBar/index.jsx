@@ -6,6 +6,7 @@ import AddToDriveIcon from "@mui/icons-material/AddToDrive";
 import BoltIcon from "@mui/icons-material/Bolt";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import { capitalizeFirstLetter } from "~/utils/formatter";
 
 const stylesChip = {
   color: "#fff",
@@ -21,7 +22,9 @@ const stylesChip = {
   },
 };
 
-const BoardBar = () => {
+const BoardBar = (props) => {
+  const { board } = props;
+
   return (
     <Box
       sx={{
@@ -40,34 +43,34 @@ const BoardBar = () => {
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
         <Chip
+          sx={stylesChip}
           icon={<DashboardIcon />}
-          label="Dashboard"
+          label={board?.title}
           clickable
-          sx={stylesChip}
         />
         <Chip
+          sx={stylesChip}
           icon={<VpnLockIcon />}
-          label="Public/Private Workspaces"
+          label={capitalizeFirstLetter(board?.type)}
           clickable
-          sx={stylesChip}
         />
         <Chip
+          sx={stylesChip}
           icon={<AddToDriveIcon />}
           label="Add To Drive"
           clickable
-          sx={stylesChip}
         />
         <Chip
+          sx={stylesChip}
           icon={<BoltIcon />}
           label="Automation"
           clickable
-          sx={stylesChip}
         />
         <Chip
+          sx={stylesChip}
           icon={<FilterListIcon />}
           label="Filter"
           clickable
-          sx={stylesChip}
         />
       </Box>
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
