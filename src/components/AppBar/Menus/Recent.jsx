@@ -1,5 +1,5 @@
-import { Check, Cloud, ContentCopy, ContentCut, ContentPaste, ExpandMore } from '@mui/icons-material';
-import { Box, Button, Divider, ListItemIcon, ListItemText, Menu, MenuItem, Typography } from '@mui/material';
+import { Check, ExpandMore } from '@mui/icons-material';
+import { Box, Button, Divider, ListItemIcon, ListItemText, Menu, MenuItem } from '@mui/material';
 import React from 'react';
 
 const Recent = () => {

@@ -1,5 +1,9 @@
-import { useState } from "react";
 import AppsIcon from "@mui/icons-material/Apps";
+import CloseIcon from "@mui/icons-material/Close";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import SearchIcon from "@mui/icons-material/Search";
 import {
   Badge,
   Box,
@@ -10,18 +14,14 @@ import {
   Typography,
 } from "@mui/material";
 import SvgIcon from "@mui/material/SvgIcon";
+import { useState } from "react";
 import { ReactComponent as TrelloIcon } from "~/assets/trello.svg";
 import ModelSelect from "../ModelSelect";
+import Profiles from "./Menus/Profiles";
 import Recent from "./Menus/Recent";
 import Starred from "./Menus/Starred";
 import Templates from "./Menus/Templates";
 import Workspaces from "./Menus/Workspaces";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import Profiles from "./Menus/Profiles";
-import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
-import SearchIcon from "@mui/icons-material/Search";
-import CloseIcon from "@mui/icons-material/Close";
 
 const AppBar = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -114,7 +114,7 @@ const AppBar = () => {
             }}
             sx={{
               minWidth: "120px",
-              maxWidth: "170px",
+              maxWidth: "180px",
               "& label": { color: "#fff" },
               "& input": { color: "#fff" },
               "& label.Mui-focused": { color: "#fff" },

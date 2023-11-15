@@ -1,9 +1,9 @@
-import { Box } from "@mui/material";
-import Card from "./Card/Card";
 import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { Box } from "@mui/material";
+import Card from "./Card/Card";
 
 const ListCards = ({ cards }) => {
   return (
@@ -13,7 +13,7 @@ const ListCards = ({ cards }) => {
     >
       <Box
         sx={{
-          p: "0 5px",
+          p: "0 5px 5px 5px",
           m: "0 5px",
           display: "flex",
           flexDirection: "column",

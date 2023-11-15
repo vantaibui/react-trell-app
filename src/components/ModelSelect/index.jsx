@@ -1,8 +1,8 @@
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useColorScheme } from "@mui/material/styles";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 
 const stylesMenuItem = {
   display: "flex",

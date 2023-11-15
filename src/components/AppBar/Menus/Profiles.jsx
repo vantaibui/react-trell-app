@@ -1,5 +1,5 @@
 import { Avatar, Box, Button, Menu, MenuItem } from '@mui/material';
-import React from 'react'
+import React from 'react';
 
 const Profiles = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);

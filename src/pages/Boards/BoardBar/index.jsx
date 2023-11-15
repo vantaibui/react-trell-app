@@ -1,11 +1,10 @@
-import { Avatar, AvatarGroup, Box, Button, Chip, Tooltip } from "@mui/material";
-import React from "react";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import VpnLockIcon from "@mui/icons-material/VpnLock";
 import AddToDriveIcon from "@mui/icons-material/AddToDrive";
 import BoltIcon from "@mui/icons-material/Bolt";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import VpnLockIcon from "@mui/icons-material/VpnLock";
+import { Avatar, AvatarGroup, Box, Button, Chip, Tooltip } from "@mui/material";
 import { capitalizeFirstLetter } from "~/utils/formatter";
 
 const stylesChip = {
@@ -42,12 +41,14 @@ const BoardBar = (props) => {
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-        <Chip
-          sx={stylesChip}
-          icon={<DashboardIcon />}
-          label={board?.title}
-          clickable
-        />
+        <Tooltip title={board?.description}>
+          <Chip
+            sx={stylesChip}
+            icon={<DashboardIcon />}
+            label={board?.title}
+            clickable
+          />
+        </Tooltip>
         <Chip
           sx={stylesChip}
           icon={<VpnLockIcon />}
@@ -99,8 +100,8 @@ const BoardBar = (props) => {
               color: "#fff",
               cursor: "pointer",
               "&:first-of-type": {
-                bgcolor: "#a4b0be"
-              }
+                bgcolor: "#a4b0be",
+              },
             },
           }}
         >

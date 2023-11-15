@@ -11,12 +11,12 @@ import {
 } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
 import { Box } from "@mui/material";
+import { cloneDeep } from "lodash";
 import { useEffect, useState } from "react";
 import { mapOrder } from "~/utils/formatter";
-import ListColumns from "./ListColumns/ListColumns";
 import Column from "./ListColumns/Column/Column";
 import Card from "./ListColumns/Column/ListCards/Card/Card";
-import { cloneDeep } from "lodash";
+import ListColumns from "./ListColumns/ListColumns";
 
 const ACTIVE_DRAG_ITEM_TYPE = {
   COLUMN: "ACTIVE_DRAG_ITEM_TYPE_COLUMN",
