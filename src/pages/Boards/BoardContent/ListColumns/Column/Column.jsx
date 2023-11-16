@@ -28,7 +28,7 @@ import { toast } from "react-toastify";
 import { mapOrder } from "~/utils/formatter";
 import ListCards from "./ListCards/ListCards";
 
-const Column = ({ column }) => {
+const Column = ({ column, createNewCard }) => {
   const {
     attributes,
     listeners,
@@ -60,13 +60,15 @@ const Column = ({ column }) => {
   const toggleOpenNewCardForm = () => setOpenNewCardForm(!openNewCardForm);
 
   const [newCardTitle, setNewCardTitle] = useState("");
-  const addNewCard = () => {
+  const addNewCard = async () => {
     if (!newCardTitle) {
       toast.error("Please enter column title!", {
-        position: "bottom-right"
+        position: "bottom-right",
       });
       return;
     }
+
+    await createNewCard({ title: newCardTitle, columnId: column._id });
 
     toggleOpenNewCardForm();
     setNewCardTitle("");

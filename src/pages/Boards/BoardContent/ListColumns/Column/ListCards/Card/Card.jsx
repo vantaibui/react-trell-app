@@ -13,9 +13,9 @@ import {
 const Card = ({ card }) => {
   const shouldShowCardActions = () => {
     return (
-      !!card?.memberIds.length ||
-      !!card?.comments.length ||
-      !!card?.attachments.length
+      !!card?.memberIds?.length ||
+      !!card?.comments?.length ||
+      !!card?.attachments?.length
     );
   };
 
@@ -70,19 +70,19 @@ const Card = ({ card }) => {
       </CardContent>
       {shouldShowCardActions && (
         <CardActions sx={{ p: "0 4px 8px 4px" }}>
-          {!!card?.memberIds.length && (
+          {!!card?.memberIds?.length && (
             <Button size="small" startIcon={<Group />}>
-              {card?.memberIds.length}
+              {card?.memberIds?.length}
             </Button>
           )}
-          {!!card?.comments.length && (
+          {!!card?.comments?.length && (
             <Button size="small" startIcon={<ModeComment />}>
-              {card?.comments.length}
+              {card?.comments?.length}
             </Button>
           )}
-          {!!card?.attachments.length && (
+          {!!card?.attachments?.length && (
             <Button size="small" startIcon={<Attachment />}>
-              {card?.attachments.length}
+              {card?.attachments?.length}
             </Button>
           )}
         </CardActions>

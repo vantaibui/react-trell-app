@@ -9,9 +9,9 @@ import {
 } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
 import { Box } from "@mui/material";
-import { cloneDeep } from "lodash";
+import { cloneDeep, isEmpty } from "lodash";
 import { useEffect, useState } from "react";
-import { mapOrder } from "~/utils/formatter";
+import { generatePlaceholderCard, mapOrder } from "~/utils/formatter";
 import Column from "./ListColumns/Column/Column";
 import Card from "./ListColumns/Column/ListCards/Card/Card";
 import ListColumns from "./ListColumns/ListColumns";
@@ -22,7 +22,12 @@ const ACTIVE_DRAG_ITEM_TYPE = {
   CARD: "ACTIVE_DRAG_ITEM_TYPE_CARD",
 };
 
-const BoardContent = ({ board }) => {
+const BoardContent = ({
+  board,
+  createNewColumn,
+  createNewCard,
+  moveColumns,
+}) => {
   const [orderedColumns, setOrderedColumns] = useState([]);
 
   const [activeDragItemId, setActiveDragItemId] = useState(null);
@@ -94,6 +99,9 @@ const BoardContent = ({ board }) => {
         nextActiveColumn.cards = nextActiveColumn.cards?.filter(
           (card) => card._id !== activeDragginCardId
         );
+        if (isEmpty(nextActiveColumn.cards)) {
+          nextActiveColumn.cards = [generatePlaceholderCard(nextActiveColumn)];
+        }
         nextActiveColumn.cardOrderIds = nextActiveColumn.cards?.map(
           (card) => card._id
         );
@@ -142,7 +150,6 @@ const BoardContent = ({ board }) => {
     if (ACTIVE_DRAG_ITEM_TYPE.COLUMN.indexOf(activeDragItemType) !== -1) return;
     const { active, over } = event;
     if (!active || !over) return;
-    console.log(active);
     const {
       id: activeDragginCardId,
       data: { current: activeDraggingCardData },
@@ -241,7 +248,11 @@ const BoardContent = ({ board }) => {
         oldColumnIndex,
         newColumnIndex
       );
+      // Call API update card khi kéo thả
+      moveColumns(dndOrderedColumns);
+
       // const dndOrderedColumnsIds = dndOrderedColumns.map(c => c._id);
+      // Vẫn gọi update State ở đây để tránh delay hoặc flickering giao diện lúc kéo thả cần phải chờ gọi API(small trick)
       setOrderedColumns(dndOrderedColumns);
     }
 
@@ -278,7 +289,11 @@ const BoardContent = ({ board }) => {
             theme.palette.mode === "dark" ? "#34495e" : "#1976d2",
         }}
       >
-        <ListColumns columns={orderedColumns} />
+        <ListColumns
+          columns={orderedColumns}
+          createNewColumn={createNewColumn}
+          createNewCard={createNewCard}
+        />
         <DragOverlay dropAnimation={customDropAnimation}>
           {(!activeDragItemId || !activeDragItemType) && null}
           {activeDragItemId &&

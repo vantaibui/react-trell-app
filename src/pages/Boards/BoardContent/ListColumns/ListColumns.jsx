@@ -10,17 +10,19 @@ import { useState } from "react";
 import Column from "./Column/Column";
 import { toast } from "react-toastify";
 
-const ListColumns = ({ columns }) => {
+const ListColumns = ({ columns, createNewColumn, createNewCard }) => {
   const [openNewColumnForm, setOpenNewColumnForm] = useState(false);
   const toggleOpenNewColumnForm = () =>
     setOpenNewColumnForm(!openNewColumnForm);
 
   const [newColumnTitle, setNewColumnTitle] = useState("");
-  const addNewColumn = () => {
+  const addNewColumn = async () => {
     if (!newColumnTitle) {
       toast.error("Please enter column title!");
       return;
     }
+
+    await createNewColumn({ title: newColumnTitle });
 
     toggleOpenNewColumnForm();
     setNewColumnTitle("");
@@ -46,7 +48,13 @@ const ListColumns = ({ columns }) => {
         }}
       >
         {columns?.map((column, index) => {
-          return <Column key={column?._id + index} column={column} />;
+          return (
+            <Column
+              key={column?._id + index}
+              column={column}
+              createNewCard={createNewCard}
+            />
+          );
         })}
         {/* Box  add new column*/}
         {!openNewColumnForm ? (
