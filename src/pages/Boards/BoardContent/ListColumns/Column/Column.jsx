@@ -24,9 +24,9 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { mapOrder } from "~/utils/formatter";
 import ListCards from "./ListCards/ListCards";
-import theme from "~/Theme";
 
 const Column = ({ column }) => {
   const {
@@ -61,7 +61,12 @@ const Column = ({ column }) => {
 
   const [newCardTitle, setNewCardTitle] = useState("");
   const addNewCard = () => {
-    if (!newCardTitle) return;
+    if (!newCardTitle) {
+      toast.error("Please enter column title!", {
+        position: "bottom-right"
+      });
+      return;
+    }
 
     toggleOpenNewCardForm();
     setNewCardTitle("");
@@ -219,6 +224,7 @@ const Column = ({ column }) => {
                 variant="outlined"
                 onChange={(e) => setNewCardTitle(e.target.value)}
                 autoFocus
+                data-no-dnd="true"
                 sx={{
                   "& label": { color: "text.primary" },
                   "& input": {
@@ -257,6 +263,7 @@ const Column = ({ column }) => {
                   variant="contained"
                   color="success"
                   size="small"
+                  data-no-dnd="true"
                   sx={{
                     boxShadow: "none",
                     border: "0.5px solid",

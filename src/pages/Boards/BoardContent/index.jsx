@@ -1,9 +1,7 @@
 import {
   DndContext,
   DragOverlay,
-  MouseSensor,
   PointerSensor,
-  TouchSensor,
   closestCorners,
   defaultDropAnimationSideEffects,
   useSensor,
@@ -17,6 +15,7 @@ import { mapOrder } from "~/utils/formatter";
 import Column from "./ListColumns/Column/Column";
 import Card from "./ListColumns/Column/ListCards/Card/Card";
 import ListColumns from "./ListColumns/ListColumns";
+import { MouseSensor, TouchSensor } from "~/customs/DnkKitSensors";
 
 const ACTIVE_DRAG_ITEM_TYPE = {
   COLUMN: "ACTIVE_DRAG_ITEM_TYPE_COLUMN",
@@ -43,7 +42,7 @@ const BoardContent = ({ board }) => {
   const touchSensor = useSensor(TouchSensor, {
     activationConstraint: { delay: 250, tolerance: 5 },
   });
-  const sensors = useSensors(pointerSensor, mouseSensor, touchSensor);
+  const sensors = useSensors(mouseSensor, touchSensor);
 
   useEffect(() => {
     const orderedColumns = mapOrder(
